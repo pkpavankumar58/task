@@ -1,0 +1,10 @@
+- hosts: all # this indicates that which are servers is going to execute the task.
+  become: yes # are we going to sudo to root user or not
+  gather_facts: false
+  vars:
+    pkgname: httpd
+  tasks:
+    - name: httpd install
+      action: yum name='{{pkgname}}' state=installed
+    - name: start httpd
+      action: service name='{{pkgname}}' state=started    

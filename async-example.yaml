@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+    - copy: 
+        src: /home/ec2-user/devops.sh
+        dest: /home/ec2-user
+        mode: 0777
+    - command: /home/ec2-user/devops.sh    
+      async: 60
+      poll: 10

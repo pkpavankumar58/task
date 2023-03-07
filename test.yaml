@@ -1,0 +1,11 @@
+---
+- hosts: all # this indicates that which are servers is going to execute the task.
+  become: yes # are we going to sudo to root user or not
+  tasks:
+    - name: installing httpd
+      action: yum name=jenkins state=present
+      notify: start jenkins service  
+  handlers:
+    - name: start jenkins service
+      action: service name=jenkins state=started
+...

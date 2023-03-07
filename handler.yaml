@@ -1,0 +1,11 @@
+---
+- hosts: all # this indicates that which are servers is going to execute the task.
+  become: yes # are we going to sudo to root user or not
+  tasks:
+    - name: installing httpd into webservers
+      action: yum name=httpd state=present
+      notify: start httpd service
+  handlers:
+    - name: start httpd service
+      action: service name=httpd state=started
+...

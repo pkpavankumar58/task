@@ -1,0 +1,25 @@
+---
+- hosts: all # this indicates that which are servers is going to execute the task.
+  become: yes # are we going to sudo to root user or not
+  tasks:
+    - name: install apache for RedHat
+      yum:
+        name: httpd
+        state: installed  
+       when: ansible_os_family == "RedHat"
+    - name: start httpd service
+      service:
+        name: httpd
+        state: started  
+       when: ansible_os_family == "Redhat"
+     - name: install apache for debian
+      yum:
+        name: apache2
+        state: installed
+       when: ansible_os_family == "Debian"
+    - name: start apache2 service
+      service:
+        name: apache2
+        state: started
+       when: ansible_os_family == "Debian"   
+...

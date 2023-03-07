@@ -1,0 +1,9 @@
+- hosts: all # this indicates that which are servers is going to execute the task.
+  become: yes # are we going to sudo to root user or not
+  gather_facts: false
+  var_files:
+    - user.yml
+  tasks:
+    - name: creating user {{user1}}
+      user: 
+        name: "{{user1}}"
